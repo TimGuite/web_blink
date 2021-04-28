@@ -27,29 +27,75 @@
           .then((text) => console.log(text));
       }
 
-      let status = { red: 0, green: 0, blue: 0 };
       setInterval(() => {
         fetch("/status").then((response) =>
-          response.json().then((new_status) => {
-            status = new_status;
+          response.json().then((status) => {
             console.log(status);
+            if (status.red == 1) {
+              document.getElementById("red-led-box").style.backgroundColor =
+                "#ff1a1a";
+            }
+            if (status.green == 1) {
+              document.getElementById("green-led-box").style.backgroundColor =
+                "#33ff33";
+            }
+            if (status.blue == 1) {
+              document.getElementById("blue-led-box").style.backgroundColor =
+                "#0066ff";
+            }
           })
         );
       }, 1000);
     </script>
+
+    <style>
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .flex-container > div {
+        height: 30vh;
+        min-width: 100px;
+        margin: 10px;
+        text-align: center;
+        flex-grow: 1;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1.4rem;
+      }
+    </style>
   </head>
 
   <body>
-    <div style="max-width: 800px; margin: auto; display: block">
-      <b style="text-align: center; margin: auto; display: block"
-        >This is the IET Present in 10 demo</b
+    <div style="max-width: 1000px; margin: auto; display: block">
+      <h1 style="text-align: center; margin: auto; display: block">
+        IET Present In 10 Demo
+      </h1>
+      <h2 style="text-align: center; margin: auto; display: block">
+        Change the State of the World
+      </h2>
+      <h2
+        style="text-align: center; margin: auto; display: block; color: #555555"
       >
-      <div style="display: block">
-        <button id="red-led-button" onclick="red_led_on()">RED LED</button>
-        <button id="green-led-button" onclick="green_led_on()">
-          GREEN LED
-        </button>
-        <button id="blue-led-button" onclick="blue_led_on()">BLUE LED</button>
+        Tim Guite
+      </h2>
+      <br />
+      <div style="display: block"></div>
+      <div class="flex-container">
+        <div id="red-led-box" style="background-color: #ff8080">
+          <button id="red-led-button" onclick="red_led_on()">RED LED</button>
+        </div>
+        <div id="green-led-box" style="background-color: #80ffbf">
+          <button id="green-led-button" onclick="green_led_on()">
+            GREEN LED
+          </button>
+        </div>
+        <div id="blue-led-box" style="background-color: #80ccff">
+          <button id="blue-led-button" onclick="blue_led_on()">BLUE LED</button>
+        </div>
       </div>
     </div>
   </body>
