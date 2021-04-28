@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from gpiozero import LED
 
 app = Flask(__name__)
@@ -41,3 +41,13 @@ def control_led(number: int, value: str):
     elif args == (3, "off"):
         blue_led.off()
         return "You turned LED 3 Off"
+
+
+@app.route("/status/")
+def status():
+    response = {
+        "red": red_led.value,
+        "green": green_led.value,
+        "blue": blue_led.value
+    }
+    return jsonify(response)
