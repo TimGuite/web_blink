@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IET Present In 10 Demo</title>
     <script>
-        function red_led_on() {
-            console.log("Turning red LED on");
-            fetch("/led/1/on").then(response => response.text()).then(text => console.log(text));
-        };
+      function red_led_on() {
+        console.log("Turning red LED on");
+        fetch("/led/1/on")
+          .then((response) => response.text())
+          .then((text) => console.log(text));
+      }
 
-        function green_led_on() {
-            console.log("Turning green LED on");
-            fetch("/led/2/on").then(response => response.text()).then(text => console.log(text));
-        };
+      function green_led_on() {
+        console.log("Turning green LED on");
+        fetch("/led/2/on")
+          .then((response) => response.text())
+          .then((text) => console.log(text));
+      }
 
-        function blue_led_on() {
-            console.log("Turning blue LED on");
-            fetch("/led/3/on").then(response => response.text()).then(text => console.log(text));
-        };
+      function blue_led_on() {
+        console.log("Turning blue LED on");
+        fetch("/led/3/on")
+          .then((response) => response.text())
+          .then((text) => console.log(text));
+      }
+
+      let status = { red: 0, green: 0, blue: 0 };
+      setInterval(() => {
+        fetch("/status").then((response) =>
+          response.json().then((new_status) => {
+            status = new_status;
+            console.log(status);
+          })
+        );
+      }, 1000);
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <b>This is the IET Present in 10 demo</b>
     <button id="red-led-button" onclick="red_led_on()">RED LED</button>
     <button id="green-led-button" onclick="green_led_on()">GREEN LED</button>
     <button id="blue-led-button" onclick="blue_led_on()">BLUE LED</button>
-</body>
-
+  </body>
 </html>
