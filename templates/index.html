@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IET Present In 10 Demo</title>
+    <script>
+        function red_led_on() {
+            console.log("Turning red LED on");
+            fetch("/led/1/on").then(response => response.text()).then(text => console.log(text));
+        };
+
+        function green_led_on() {
+            console.log("Turning green LED on");
+            fetch("/led/2/on").then(response => response.text()).then(text => console.log(text));
+        };
+
+        function blue_led_on() {
+            console.log("Turning blue LED on");
+            fetch("/led/3/on").then(response => response.text()).then(text => console.log(text));
+        };
+    </script>
+</head>
+
+<body>
+    <b>This is the IET Present in 10 demo</b>
+    <button id="red-led-button" onclick="red_led_on()">RED LED</button>
+    <button id="green-led-button" onclick="green_led_on()">GREEN LED</button>
+    <button id="blue-led-button" onclick="blue_led_on()">BLUE LED</button>
+</body>
+
+</html>
