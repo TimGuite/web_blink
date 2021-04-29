@@ -51,3 +51,12 @@ def status():
         "blue": blue_led.value
     }
     return jsonify(response)
+
+
+@app.route("/reset")
+def reset():
+    # Convenience function so I don't have to keep restarting the app
+    red_led.off()
+    green_led.off()
+    blue_led.off()
+    return "You just turned off all the LEDs"
