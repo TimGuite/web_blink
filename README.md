@@ -2,7 +2,7 @@
 
 A simple web app connected to some LEDs which is intended for use as a demo during my entry for the IET [PresentIn10](https://www.theiet.org/involved/young-professionals/iet-presentin10-competition) competition.
 
-# Setup 
+# Setup
 
 Get a Raspberry Pi, some resistors, LEDs, jumper wires.
 
@@ -14,7 +14,10 @@ Open a terminal.
 pip3 install flask gpiozero
 export FLASK_APP = web_blink.py
 python3 -m flask run
-# If you want other people to be able to access the demo, use:
+# If you want other people to be able to access the demo locally, use:
 python3 -m flask run --host 0.0.0.0
-```
 
+# To make the demo available globally, use pitunnel with:
+pitunnel --port=5000 --name=web_blink --http
+# Then log into pitunnel -> Custom Tunnels to check url
+```
